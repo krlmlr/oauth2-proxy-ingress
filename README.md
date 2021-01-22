@@ -16,6 +16,7 @@
 	    - clientId=0oa9ouy57yNog4AYr2p7
 	    - client_secret=ZOzPBR7iAJYOx7E4vV4GWOvqMsF8LXnmqYTZem1Y
             - issuer=https://hudea.okta.com/oauth2/default 
+	    - --validate-url=https://hudea.okta.com/oauth2/default/v1/introspect
 1. Subpaths in this subdomain may point to different services `svc1` and `svc2`
     - `svc1` and `svc2` are in separate deployments
 1. The ingress is accessible through a public URL and secured with TLS
