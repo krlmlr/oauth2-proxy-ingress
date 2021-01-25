@@ -1,0 +1,23 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: hello-alx
+  labels:
+    app: hello-alx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-alx
+  template:
+    metadata:
+      labels:
+        app: hello-alx
+    spec:
+      containers:
+      - name: hello-alx
+        image: mendhak/http-https-echo:17
+        ports:
+        - containerPort: 8080
+
+---

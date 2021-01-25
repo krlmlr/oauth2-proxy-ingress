@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    k8s-app: oauth2-proxy
+  name: oauth2-proxy
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: oauth2-proxy
+  template:
+    metadata:
+      labels:
+        k8s-app: oauth2-proxy
+    spec:
+      containers:
+      - args:
+        - --provider=oidc
+        - --email-domain=*
+        - --upstream=file:///dev/null
+        - --http-address=0.0.0.0:4180
+        - --skip-provider-button=true
+        - --redirect-url=http://test.alx.com/oauth2/callback
+        - --oidc-issuer-url=https://hudea.okta.com/oauth2/default
+        - --cookie-domain=.alx.com
+        - --cookie-secure=false
+        - --auth-logging=true
+        - --request-logging=true
+        - --standard-logging=true
+        - --cookie-refresh=360s
+        - --pass-access-token=true
+        - --reverse-proxy=true
+        - --set-xauthrequest=true
+        - --scope=openid email profile offline_access
+        - --pass-basic-auth=true
+        - --pass-user-headers=true
+        - --set-authorization-header=true
+        - --skip-auth-preflight=true
+        - --validate-url=https://hudea.okta.com/oauth2/default/v1/introspect
+        - --whitelist-domain=.alx.com
+        env:
+        - name: OAUTH2_PROXY_CLIENT_ID
+          value: 0oa9md0hlv509q61E2p7
+        - name: OAUTH2_PROXY_CLIENT_SECRET
+          value: NTe-aOPBgCiROq0K40s4TgYTaiWECAQZ8UDHHn4b
+        # docker run -ti --rm python:3-alpine python -c 'import secrets,base64; print(base64.b64encode(base64.b64encode(secrets.token_bytes(16))));'
+        - name: OAUTH2_PROXY_COOKIE_SECRET
+          value: Um9pUS9lczBqWTM4WlhpQitpWUIyZz09
+        image: quay.io/oauth2-proxy/oauth2-proxy:latest
+        imagePullPolicy: Always
+        name: oauth2-proxy
+        ports:
+        - containerPort: 4180
+          protocol: TCP
+
+---
