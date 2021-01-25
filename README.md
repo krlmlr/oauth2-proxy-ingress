@@ -13,8 +13,8 @@
     - Only one callback URL is configured in Okta
     - The Okta configuration is a throwaway one, we don't care too much about secrecy of client ID and client secret
     - Configure Okta Domain with Oauth2 Proxy with:
-	    - clientId=0oa9ouy57yNog4AYr2p7
-	    - client_secret=ZOzPBR7iAJYOx7E4vV4GWOvqMsF8LXnmqYTZem1Y
+	    - clientId=0oa9md0hlv509q61E2p7
+	    - client_secret=NTe-aOPBgCiROq0K40s4TgYTaiWECAQZ8UDHHn4b
             - issuer=https://hudea.okta.com/oauth2/default 
 	    - --validate-url=https://hudea.okta.com/oauth2/default/v1/introspect
 1. Subpaths in this subdomain may point to different services `svc1` and `svc2`
