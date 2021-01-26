@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: hello-alx2
+  labels:
+    app: hello-alx2
+spec:
+  type: NodePort
+  ports:
+  - protocol: TCP
+    name: http
+    port: 8080
+    targetPort: 8080
+  selector:
+    app: hello-alx2
+
+---
